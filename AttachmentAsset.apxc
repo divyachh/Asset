@@ -1,0 +1,11 @@
+public class AttachmentAsset {
+    
+    @AuraEnabled public static String base64Value{get;set;}
+    @AuraEnabled public static String contentType{get;set;}
+    @AuraEnabled
+    public static void loadContentVersion(){
+        ContentVersion cv = [Select Id,VersionData,Title,FileExtension From ContentVersion limit 1];
+        base64Value = EncodingUtil.base64Encode(cv.VersionData);
+        contentType = cv.FileExtension;
+    }
+}
