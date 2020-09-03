@@ -1,6 +1,7 @@
-<aura:component controller="AttachmentAsset" implements="flexipage:availableForAllPageTypes">
-	<aura:attribute name="base64Value" type="String" />
-    <aura:attribute name="contentType" type="String" />
-   <a class="download" href="{!'contentType:' + v.contentType+';base64,'+ v.base64Value}" onclick = "{!c.downloadFile}" >Download</a>
+<aura:component controller="AttachmentUrl" implements="flexipage:availableForAllPageTypes">
+   <aura:attribute name="documentLink" type="String" />
+   <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+   <!-- <lightning:button variant="brand-outline" label="Download" title="Brand action" onclick="{! c.downloadFile }" />-->
+    <div class="slds-card slds-box"><a class="download" href="{!v.documentLink}" >Download</a> </div>
     
 </aura:component>
