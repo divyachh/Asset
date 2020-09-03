@@ -1,11 +1,22 @@
-public class AttachmentAsset {
-    
-    @AuraEnabled public static String base64Value{get;set;}
-    @AuraEnabled public static String contentType{get;set;}
+public class AttachmentAsset {    
     @AuraEnabled
-    public static void loadContentVersion(){
-        ContentVersion cv = [Select Id,VersionData,Title,FileExtension From ContentVersion limit 1];
-        base64Value = EncodingUtil.base64Encode(cv.VersionData);
-        contentType = cv.FileExtension;
+    public static loadContentVersionWrapper loadContentVersion(){
+        loadContentVersionWrapper contentWrapper = new loadContentVersionWrapper();
+        List<ContentVersion> listOfContentVersion = [Select Id,VersionData,Title,FileExtension From ContentVersion limit 1];
+        if(!listOfContentVersion.isEmpty()){
+            //String base64Value = EncodingUtil.base64Encode(listOfContentVersion[0].VersionData);
+            contentWrapper.base64Value = EncodingUtil.base64Encode(listOfContentVersion[0].VersionData);
+            contentWrapper.contentType = listOfContentVersion[0].FileExtension;
+        }
+       return contentWrapper; 
+    }
+
+    public class loadContentVersionWrapper{
+        @AuraEnabled 
+        public String base64Value;
+        @AuraEnabled 
+        public String contentType;
+        
+
     }
 }
