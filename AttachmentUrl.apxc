@@ -1,0 +1,13 @@
+public class AttachmentUrl {
+@AuraEnabled
+    public static String loadContentVersion(){
+        String url = '';
+        List<ContentDocument> listOfContentVersion = [Select Id,Title,FileExtension From ContentDocument];
+        if(listOfContentVersion.size()>0){
+            String sfdcBaseURL = System.URL.getSalesforceBaseUrl().toExternalForm();
+            
+            url = sfdcBaseURL+'/sfc/servlet.shepherd/document/download/'+listOfContentVersion[0].id; 
+        }    
+       return url; 
+    }
+}
