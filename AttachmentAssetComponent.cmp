@@ -1,0 +1,6 @@
+<aura:component controller="AttachmentAsset" implements="flexipage:availableForAllPageTypes">
+	<aura:attribute name="base64Value" type="String" />
+    <aura:attribute name="contentType" type="String" />
+   <a class="download" href="{!'contentType:' + v.contentType+';base64,'+ v.base64Value}" onclick = "{!c.downloadFile}" >Download</a>
+    
+</aura:component>
