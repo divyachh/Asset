@@ -6,7 +6,9 @@ public class AttachmentAsset {
         if(!listOfContentVersion.isEmpty()){
             //String base64Value = EncodingUtil.base64Encode(listOfContentVersion[0].VersionData);
             contentWrapper.base64Value = EncodingUtil.base64Encode(listOfContentVersion[0].VersionData);
+            System.debug(contentWrapper.base64Value);
             contentWrapper.contentType = listOfContentVersion[0].FileExtension;
+            System.debug(contentWrapper.contentType);
         }
        return contentWrapper; 
     }
